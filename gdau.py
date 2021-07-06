@@ -35,7 +35,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--date", type=str, required = True)
 parser.add_argument("--drone", type=str, required = True)
 parser.add_argument("--path", type=str, required = True)
-parser.add_argument("--counterres", type = int, default = 5)
+parser.add_argument("--counterres", type = int, default = 5, required = False)
 args = parser.parse_args()
 counter_resolution = 1
 #date = input('Date of flight? (yyyy-mm-dd)\n')
@@ -112,9 +112,9 @@ raport.write("Folders provided and number of photos:\n")
 for field in temp:
     field_dirs = [dir for dir in actual_folders if field in dir]
     raport.write(f"\t{field}:\n")
-    raport.write(f"\t\tcal:\t{str(len(os.listdir(field_dirs[0])))}")
-    raport.write(f"\t\timages:\t{str(len(os.listdir(field_dirs[1])))}")
-    raport.write(f"\tsum:{str(len(os.listdir(field_dirs[0])) + len(os.listdir(field_dirs[1])))}\n")
+    raport.write(f"\t\tcal: {str(len(os.listdir(field_dirs[0])))}")
+    raport.write(f"\timages:\t{str(len(os.listdir(field_dirs[1])))}")
+    raport.write(f"\tsum: {str(len(os.listdir(field_dirs[0])) + len(os.listdir(field_dirs[1])))}\n")
 total_sum = 0
 for field in temp:
     field_dirs = [dir for dir in actual_folders if field in dir]
@@ -126,10 +126,10 @@ raport.write("Connected\n" if connect() else "No connection, aborting...\n")
 raport.write(f"LargeFile available:\t{str(os.path.isdir(destination))}\n")
 raport.write(f"Upload started:\t{datetime.datetime.now().strftime(data_format)}\n")
 raport.write('Detailed upload progress:\n')
-start_time = datetime.datetime.now()
 print('Raport opened!\n')
 print('Starting upload!\n')
 time.sleep(4)
+start_time = datetime.datetime.now()
 # for P4RGB
 if drone == 'P4RGB':
     counter = 0
