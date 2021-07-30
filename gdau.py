@@ -59,7 +59,8 @@ expected_folders = ['graminor_cal', 'graminor_images',
                    'masbasis_cal', 'masbasis_images',
                    'nobalyield_cal', 'nobalyield_images',
                    'robot_cal', 'robot_images',
-                   'nobalnue_cal', 'nobalnue_images']
+                   'nobalnue_cal', 'nobalnue_images',
+                   'rust_20m', 'rust_12m']
 actual_folders = []
 for field in expected_folders:
     if os.path.join(path_from, field) in directories:
@@ -250,6 +251,12 @@ if drone == 'P4M':
                             print(f"{str(round(counter*100/total_sum))} % done\n")
                             print(f"Time remaining: [hh-mm-ss-ms] {estimated}\t {str(progress_time)} per file\n")
                             statbar(counter, total_sum)
+    if 'rapport.txt' in field_dirs:
+        shutil.copy('rapport.txt', destination + '/' + field + '/' + date)
+        
+        
+    
+    
 end_time = datetime.datetime.now()
 duration = end_time - start_time
 report.write(f"Upload finished at: {datetime.datetime.now().strftime(data_format)}\nTotal images uploaded: {str(counter)}\nTime elapsed: {str(duration)}")
