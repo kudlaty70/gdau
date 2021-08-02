@@ -251,8 +251,13 @@ if drone == 'P4M':
                             print(f"{str(round(counter*100/total_sum))} % done\n")
                             print(f"Time remaining: [hh-mm-ss-ms] {estimated}\t {str(progress_time)} per file\n")
                             statbar(counter, total_sum)
-    if 'rapport.txt' in field_dirs:
-        shutil.copy('rapport.txt', destination + '/' + field + '/' + date)
+    from_directory = os.listdir(path_from)
+    if 'rapport.txt' in from_directory:
+        shutil.copy('rapport.txt', destination)
+        os.rename(destination + '/' + 'rapport.txt', destination + '/' + date + '_' + 'rapport.txt')
+        os.system("attrib +h " + destination + '/' + date + '_' + 'rapport.txt')
+        
+
         
         
     
