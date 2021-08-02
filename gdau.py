@@ -253,9 +253,13 @@ if drone == 'P4M':
                             statbar(counter, total_sum)
     from_directory = os.listdir(path_from)
     if 'rapport.txt' in from_directory:
+        new_path = destination + '/' + date + '_' + 'rapport.txt'
+        counter = 1
+        while os.path.isdir(new_path) == True:
+            new_path = new_path + '_{}'.format(counter)
         shutil.copy('rapport.txt', destination)
-        os.rename(destination + '/' + 'rapport.txt', destination + '/' + date + '_' + 'rapport.txt')
-        os.system("attrib +h " + destination + '/' + date + '_' + 'rapport.txt')
+        os.rename(destination + '/' + 'rapport.txt', new_path)
+        os.system("attrib +h " + new_path)
         
 
         
